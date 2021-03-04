@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_type',
+        'profile_id',
     ];
 
     /**
@@ -40,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // add morph relation database
+    protected $with = ['profile'];
+
+    public function profile()
+    {
+        return $this->morphTo();
+    }
 }
