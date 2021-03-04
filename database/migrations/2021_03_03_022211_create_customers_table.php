@@ -16,13 +16,16 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('phone');
+            $table->string('address');
+            $table->string('city');
+            $table->string('priority');
 
-            $table->foreignId('assistant_id')->nullable()->constrained();
+            // create foreign key to assistants table
+            $table->unsignedBigInteger('assistant_id')->nullable();
+            $table->foreign('assistant_id')->references('id')->on('assistants');
+
+            // $table->foreignId('assistant_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

@@ -16,15 +16,13 @@ class CreateAssistantsTable extends Migration
         Schema::create('assistants', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('phone');
+            $table->string('address');
+            $table->string('city');
 
-            $table->foreignId('manager_id')->nullable()->constrained();
-
-
+            // create foreign key to managers table
+            $table->unsignedBigInteger('manager_id')->nullable();
+            $table->foreign('manager_id')->references('id')->on('managers');
 
             $table->timestamps();
         });
