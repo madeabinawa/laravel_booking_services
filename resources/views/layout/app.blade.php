@@ -10,12 +10,15 @@
         {{-- stylesheet assets --}}
         <link rel="stylesheet" href="{{asset("css/app.css")}}">
         <link rel="stylesheet" href="{{asset("css/dashboard.css")}}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     </head>
 
     <body>
 
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">{{config("app.name")}}</a>
+            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-center text-xl text-uppercase"
+                href="#">{{config("app.name")}}</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
                 data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -35,29 +38,44 @@
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{route('customer.index')}}">
+                                <a class="nav-link {{Request::is('dashboard')? 'active': ''}}" href="#">
                                     <span data-feather="home"></span>
-                                    Customers <span class="sr-only">(current)</span>
+                                    Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="file"></span>
-                                    Orders
+                                    <span data-feather="users"></span>
+                                    Admins
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="users"></span>
+                                    Managers
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{Request::is('assistants')? 'active': ''}}" href="#">
+                                    <span data-feather="users"></span>
+                                    Assistants
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{Request::is('customers')? 'active': ''}}"
+                                    href="{{route('customers.index')}}">
+                                    <span data-feather="users"></span>
+                                    Customers
+                                </a>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <span data-feather="shopping-cart"></span>
                                     Products
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span data-feather="users"></span>
-                                    Customers
-                                </a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <span data-feather="bar-chart-2"></span>
