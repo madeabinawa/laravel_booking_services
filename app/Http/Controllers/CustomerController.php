@@ -16,8 +16,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('customer.index', compact('users'));
+        $users = User::where('profile_type', 'LIKE', '%Customer')->paginate(10);
+        return view('customers.index', compact('users'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        return view('customers.create');
     }
 
     /**
@@ -38,13 +38,24 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        // VALIDATE CREATE CUSTOMER REQUEST
+        $request->validate([
+            'name' => 'required|max:200',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:8|',
+            'phone' => 'required|min:10',
+            'city' => 'required|max:200',
+            'priority' => 'required|',
+        ]);
 
+        // CREATE CUSTOMER CREDENTIALS IN USERS TABLE
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
 
+        // CREATE CUSTOMER DETAIL IN CUSTOMERS TABLE
         $profile = Customer::create([
             'phone' => $request['phone'],
             'address' => $request['address'],
@@ -53,7 +64,10 @@ class CustomerController extends Controller
             'assistant_id',
         ]);
 
+        //CREATE CUSTOMER TABLE RELATIONSHIP TO USER TABLE WITH ID
         $profile->user()->save(User::find($user->id));
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -65,7 +79,7 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         $CustomerDetail = Customer::find($customer->id);
-        return view('customer.show', compact('CustomerDetail'));
+        return view('customers.show', compact('CustomerDetail'));
     }
 
     /**
@@ -76,7 +90,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $data = Customer::find($customer->id);
+        return view('customers.edit', compact('data'));
     }
 
     /**
@@ -88,7 +103,45 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        // GET USER ATTRIBUTES
+        $user = $customer->user;
+
+        // CHECK IF USER UPDATE THE PASSWORD
+        if ($request['password']) {
+            $request->validate(
+                [
+                    'password' => 'min:8|confirmed'
+                ]
+            );
+
+            if (!Hash::check($request['password'], $user->password)) {
+                $newPassword = Hash::make($request['password']);
+            }
+
+            // USERS TABLE RELATED UPDATE
+            User::where('id', $user->id)
+                ->update([
+                    'name' => $request['name'],
+                    'password' => $newPassword
+                ]);
+        }
+
+        // USERS TABLE RELATED UPDATE
+        User::where('id', $user->id)
+            ->update([
+                'name' => $request['name'],
+            ]);
+
+        // CUSTOMERS TABLE RELATED UPDATE
+        Customer::where('id', $customer->id)
+            ->update([
+                'phone' => $request['phone'],
+                'address' => $request['address'],
+                'city' => $request['city'],
+                'priority' => $request['priority']
+            ]);
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -99,6 +152,15 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        // Get User ID
+        $uid = $customer->user->id;
+
+        // Delete Customer
+        $customer->delete();
+
+        // Delete in User table
+        User::destroy($uid);
+
+        return redirect()->route('customers.index');
     }
 }
