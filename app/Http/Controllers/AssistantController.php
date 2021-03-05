@@ -48,20 +48,20 @@ class AssistantController extends Controller
             'city' => 'required|max:200',
         ]);
 
-        // CREATE CUSTOMER CREDENTIALS IN USERS TABLE
-        $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-
         // CREATE CUSTOMER DETAIL IN CUSTOMERS TABLE
         $profile = Assistant::create([
+            'name' => $request['name'],
             'phone' => $request['phone'],
             'address' => $request['address'],
             'city' => $request['city'],
             'priority' => $request['priority'],
             'manager_id' => $request['manager_id'],
+        ]);
+
+        // CREATE CUSTOMER CREDENTIALS IN USERS TABLE
+        $user = User::create([
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
 
         //CREATE CUSTOMER TABLE RELATIONSHIP TO USER TABLE WITH ID
