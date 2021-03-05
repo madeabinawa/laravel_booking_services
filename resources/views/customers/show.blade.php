@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-3 mx-auto mt-5" style="max-width: 75%">
-                <div class="d-flex justify-content-between card-header h2">{{$CustomerDetail->user->name}}
+                <div class="d-flex justify-content-between card-header h2">{{$CustomerDetail->name}}
                     <div class="div">
                         <a href="{{route('customers.edit',$CustomerDetail)}}" type="button"
                             class="btn btn-primary ml-3 mb-3">Edit
@@ -42,7 +42,7 @@
 
                 </div>
                 <div class="card-footer text-muted">
-                    {{$CustomerDetail->assistant_id}}
+                    {{$CustomerDetail->assistant->name ?? ''}}
                 </div>
             </div>
         </div>

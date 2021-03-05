@@ -16,7 +16,13 @@ class Customer extends Model
         return $this->morphOne(User::class, 'profile');
     }
 
+    public function assistant()
+    {
+        return $this->belongsTo(Assistant::class, 'assistant_id');
+    }
+
     protected $fillable = [
+        'name',
         'phone',
         'address',
         'city',

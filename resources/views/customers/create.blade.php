@@ -2,11 +2,11 @@
 
 @section('dashboard-content')
 <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <a href="{{route('customer.index')}}" type="button" class="btn btn-warning btn-sm mr-4 text-light">
+    <a href="{{route('customers.index')}}" type="button" class="btn btn-warning btn-sm mr-4 text-light">
         <i class="fa fa-chevron-left fa-sm pr-2"></i>Back</a>
     <h1 class="h3">Customer / Create</h1>
 </div>
-<form method="POST" action="{{route('customer.store')}}">
+<form method="POST" action="{{route('customers.store')}}">
     @csrf
     <div class="row">
         <div class="col-md-4">
@@ -65,7 +65,11 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="priority">Priority</label>
-                <input type="text" class="form-control" name="priority" id="priority" value="{{old('priority')}}">
+                <select name="priority" id="priority" class="form-control">
+                    <option>Select Priority</option>
+                    <option value="HIGH">High</option>
+                    <option value="MEDIUM">Medium</option>
+                </select>
                 @error('priority')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
@@ -93,8 +97,17 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="assistant_id">Assistant</label>
-                <input type="number" class="form-control" name="assistant_id" id="assistant_id"
-                    value="{{old('assistant_id')}}">
+                <select name="assistant_id" id="assistant_id" class="form-control selectpicker" data-live-search="true">
+                    <option>Select Assistant</option>
+
+                    {{-- GET ASSISTANTS LIST --}}
+                    {{$assistants = App\Models\Assistant::all()}}
+
+                    @foreach ($assistants as $assistant)
+                    <option value="{{$assistant->id}}">{{$assistant->name}}</option>
+                    @endforeach
+
+                </select>
                 @error('assistant_id')
                 <small class="text-danger">{{$message}}</small>
                 @enderror

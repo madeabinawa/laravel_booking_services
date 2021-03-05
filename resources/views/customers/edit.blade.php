@@ -4,7 +4,7 @@
 <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <a href="{{route('customers.index')}}" type="button" class="btn btn-warning btn-sm mr-4 text-light">
         <i class="fa fa-chevron-left fa-sm pr-2"></i>Back</a>
-    <h1 class="h3">Customer / Edit / {{$data->user->name}}</h1>
+    <h1 class="h3">Customer / Edit / {{$data->name}}</h1>
 </div>
 <form method="POST" action="{{route('customers.update',$data)}}">
     @csrf
@@ -13,7 +13,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" id="name" value="{{$data->user->name}}">
+                <input type="text" class="form-control" name="name" id="name" value="{{$data->name}}">
             </div>
         </div>
 
@@ -52,7 +52,11 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="priority">Priority</label>
-                <input type="text" class="form-control" name="priority" id="priority" value="{{$data->priority}}">
+                <select name="priority" id="priority" class="form-control">
+                    <option value="{{$data->priority}}">{{$data->priority}}</option>
+                    <option value="HIGH">HIGH</option>
+                    <option value="MEDIUM">MEDIUM</option>
+                </select>
             </div>
         </div>
     </div>
@@ -80,8 +84,20 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="assistant_id">Assistant</label>
-                <input type="number" class="form-control" name="assistant_id" id="assistant_id"
-                    value="{{$data->assistant_id}}">
+                <select name="assistant_id" id="assistant_id" class="form-control selectpicker" data-live-search="true">
+
+                    {{-- CUSTOMER RECENT ASSISTANT --}}
+                    <option value="{{$data->assistant->id ?? ''}}">{{$data->assistant->name ?? ''}}</option>
+
+                    {{-- GET ASSISTANTS LIST --}}
+                    {{$assistants = App\Models\Assistant::all()->except($data->assistant->id ?? '')}}
+
+                    @foreach ($assistants as $assistant)
+                    <option value="{{$assistant->id}}">{{$assistant->name}}
+                    </option>
+                    @endforeach
+
+                </select>
             </div>
         </div>
     </div>

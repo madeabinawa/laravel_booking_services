@@ -34,14 +34,37 @@
         </thead>
         <tbody>
             @foreach ($users as $item)
+            {{-- <tr>
+                <td>{{$users->firstItem() + $loop->index}}</td>
+            <td>{{$item->user->id}}</td>
+            <td>{{$item->user->name}}</td>
+            <td>{{$item->user->email}}</td>
+            <td>{{$item->priority}}</td>
+            <td>{{$item->assistant()->user->name}}</td>
+            <td>
+                <a href="{{route('customers.show', $item)}}" type="button"
+                    class="btn btn-sm btn-outline-info">Detail</a>
+                <a href="{{route('customers.edit', $item)}}" type="button"
+                    class="btn btn-sm btn-outline-success">Edit</a>
+
+                <form class="d-inline" action="{{ route('customers.destroy', $item->id) }}" method="POST">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete
+                    </button>
+                </form>
+            </td>
+            </tr> --}}
+
             <tr>
-                {{-- <td>{{$loop->iteration}}</td> --}}
                 <td>{{$users->firstItem() + $loop->index}}</td>
                 <td>{{$item->id}}</td>
-                <td>{{$item->name}}</td>
+                <td>{{$item->profile->name}}</td>
                 <td>{{$item->email}}</td>
                 <td>{{$item->profile->priority}}</td>
-                <td>{{$item->profile->assistant_id}}</td>
+                <td>{{App\Models\Assistant::where('id',$item->profile->assistant_id)->value('name')}}</td>
                 <td>
                     <a href="{{route('customers.show', $item->profile)}}" type="button"
                         class="btn btn-sm btn-outline-info">Detail</a>
@@ -55,12 +78,6 @@
 
                         <button type="submit" class="btn btn-sm btn-outline-danger">Delete
                         </button>
-
-                        {{-- <form id="delete_customer" action="{{route('customers.destroy', $item->profile)}}"
-                        method="post">
-                        @csrf
-                        @method('DELETE')
-                    </form> --}}
                     </form>
                 </td>
             </tr>
@@ -68,9 +85,9 @@
         </tbody>
     </table>
 </div>
-<div>
+{{-- <div>
     {{ $users->links() }}
-</div>
+</div> --}}
 
 
 @endsection

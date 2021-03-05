@@ -48,21 +48,22 @@ class CustomerController extends Controller
             'priority' => 'required|',
         ]);
 
-        // CREATE CUSTOMER CREDENTIALS IN USERS TABLE
-        $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-
         // CREATE CUSTOMER DETAIL IN CUSTOMERS TABLE
         $profile = Customer::create([
+            'name' => $request['name'],
             'phone' => $request['phone'],
             'address' => $request['address'],
             'city' => $request['city'],
             'priority' => $request['priority'],
-            'assistant_id',
+            'assistant_id' => $request['assistant_id'],
         ]);
+
+        // CREATE CUSTOMER CREDENTIALS IN USERS TABLE
+        $user = User::create([
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+
 
         //CREATE CUSTOMER TABLE RELATIONSHIP TO USER TABLE WITH ID
         $profile->user()->save(User::find($user->id));
@@ -118,27 +119,20 @@ class CustomerController extends Controller
                 $newPassword = Hash::make($request['password']);
             }
 
-            // USERS TABLE RELATED UPDATE
-            User::where('id', $user->id)
-                ->update([
-                    'name' => $request['name'],
-                    'password' => $newPassword
-                ]);
+            // UPDATE PASSWORD IN USERS TABLE
+            $customer->user->update(['password' => $newPassword]);
         }
 
-        // USERS TABLE RELATED UPDATE
-        User::where('id', $user->id)
-            ->update([
-                'name' => $request['name'],
-            ]);
 
         // CUSTOMERS TABLE RELATED UPDATE
         Customer::where('id', $customer->id)
             ->update([
+                'name' => $request['name'],
                 'phone' => $request['phone'],
                 'address' => $request['address'],
                 'city' => $request['city'],
-                'priority' => $request['priority']
+                'priority' => $request['priority'],
+                'assistant_id' => $request['assistant_id'],
             ]);
 
         return redirect()->route('customers.index');
