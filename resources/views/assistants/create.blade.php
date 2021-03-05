@@ -64,12 +64,25 @@
 
         <div class="col-md-4">
             <div class="form-group">
-                <label for="assistant_id">Manager</label>
-                <input type="number" class="form-control" name="assistant_id" id="assistant_id"
-                    value="{{old('assistant_id')}}">
-                @error('assistant_id')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
+                <label for="manager_id">Manager</label>
+                <select name="manager_id" id="manager_id" class="form-control selectpicker" data-live-search="true">
+
+                    @if (old('manager_id'))
+                    <option value="{{old('manager_id')}}">
+                        {{App\Models\Manager::where('id', old('manager_id'))->value('name')}}</option>
+                    @else
+                    <option>Select Manager</option>
+                    @endif
+
+                    {{-- GET ASSISTANTS LIST --}}
+                    {{$managers = App\Models\Manager::all()}}
+
+                    @foreach ($managers as $manager)
+                    <option value="{{$manager->id}}">{{$manager->name}}
+                    </option>
+                    @endforeach
+
+                </select>
             </div>
         </div>
     </div>

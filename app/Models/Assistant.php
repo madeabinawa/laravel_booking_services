@@ -29,6 +29,7 @@ class Assistant extends Model
 
 
     protected $fillable = [
+        'name',
         'phone',
         'address',
         'city',
