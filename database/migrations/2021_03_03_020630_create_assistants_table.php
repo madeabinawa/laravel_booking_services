@@ -20,10 +20,6 @@ class CreateAssistantsTable extends Migration
             $table->string('address');
             $table->string('city');
 
-            // create foreign key to managers table
-            $table->unsignedBigInteger('manager_id')->nullable();
-            $table->foreign('manager_id')->references('id')->on('managers');
-
             $table->timestamps();
         });
     }

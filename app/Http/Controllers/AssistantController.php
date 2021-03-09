@@ -6,7 +6,9 @@ use App\Models\Assistant;
 use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AssistantController extends Controller
 {
@@ -17,7 +19,7 @@ class AssistantController extends Controller
      */
     public function index()
     {
-        $users = User::where('profile_type', 'LIKE', '%Assistant')->paginate(3);
+        $users = User::where('profile_type', 'LIKE', '%Assistant')->get();
         return view('assistants.index', compact('users'));
     }
 

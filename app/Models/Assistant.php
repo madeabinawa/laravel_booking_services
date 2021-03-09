@@ -10,7 +10,6 @@ class Assistant extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $with = ['manager'];
 
     public function user()
     {
@@ -22,16 +21,10 @@ class Assistant extends Model
         return $this->hasMany(Customer::class);
     }
 
-    public function manager()
-    {
-        return $this->belongsTo(Manager::class, 'manager_id', 'id');
-    }
-
     protected $fillable = [
         'name',
         'phone',
         'address',
         'city',
-        'manager_id',
     ];
 }
