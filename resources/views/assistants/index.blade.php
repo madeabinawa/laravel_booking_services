@@ -26,7 +26,6 @@
                 <th>UID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Manager</th>
                 <th>Action</th>
 
             </tr>
@@ -35,33 +34,25 @@
             @foreach ($users as $item)
             {{-- {{$assistant = $item->profile()->manager()}} --}}
             <tr>
-                {{-- <td>{{$loop->iteration}}</td> --}}
-                <td>{{$users->firstItem() + $loop->index}}</td>
+                <td>{{$loop->iteration}}</td>
+                {{-- <td>{{$users->firstItem() + $loop->index}}</td> --}}
                 <td>{{$item->id}}</td>
                 <td>{{$item->profile->name}}</td>
                 <td>{{$item->email}}</td>
-                {{-- <td>{{dd($item->profile->manager)}}</td> --}}
-                {{-- <td>{{$item->profile->manager_id}}</td> --}}
-                <td>{{App\Models\Manager::where('id',$item->profile->manager_id)->value('name')}}</td>
+                {{-- <td>{{App\Models\Manager::where('id',$item->profile->manager_id)->value('name')}}</td> --}}
                 <td>
-                    <a href="{{route('assistants.show', $item->profile)}}" type="button"
+                    <a href="{{route('assistants.show', $item)}}" type="button"
                         class="btn btn-sm btn-outline-info">Detail</a>
-                    <a href="{{route('assistants.edit', $item->profile)}}" type="button"
+                    <a href="{{route('assistants.edit', $item)}}" type="button"
                         class="btn btn-sm btn-outline-success">Edit</a>
 
-                    <form class="d-inline" action="{{ route('assistants.destroy', $item->profile->id) }}" method="POST">
+                    <form class="d-inline" action="{{ route('assistants.destroy', $item) }}" method="POST">
 
                         @csrf
                         @method('DELETE')
 
                         <button type="submit" class="btn btn-sm btn-outline-danger">Delete
                         </button>
-
-                        {{-- <form id="delete_customer" action="{{route('assistants.destroy', $item->profile)}}"
-                        method="post">
-                        @csrf
-                        @method('DELETE')
-                    </form> --}}
                     </form>
                 </td>
             </tr>
