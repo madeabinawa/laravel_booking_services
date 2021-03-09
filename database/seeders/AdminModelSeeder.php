@@ -18,17 +18,16 @@ class AdminModelSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        for ($i = 0; $i < 1; $i++) {
-            $user = User::create([
-                'email' => 'admin' . $i . '@mail.com',
-                'password' => Hash::make('12345678'),
-            ]);
 
-            // CREATE ASSISTANT DETAIL IN ASSISTANT TABLE
-            $profile = Admin::create([
-                'name' => $faker->name(),
-            ]);
-            $profile->user()->save(User::find($user->id));
-        }
+        $user = User::create([
+            'email' => 'admin@mail.com',
+            'password' => Hash::make('12345678'),
+        ]);
+
+        // CREATE ASSISTANT DETAIL IN ASSISTANT TABLE
+        $profile = Admin::create([
+            'name' => $faker->name(),
+        ]);
+        $profile->user()->save(User::find($user->id));
     }
 }
