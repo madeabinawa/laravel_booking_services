@@ -67,14 +67,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{Request::is('managers')? 'active' : ''}}"
-                                    href="{{route('managers.index')}}">
-                                    <span data-feather="users"></span>
-                                    Managers
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
                                 <a class="nav-link {{Request::is('assistants')? 'active': ''}}"
                                     href="{{route('assistants.index')}}">
                                     <span data-feather="users"></span>
@@ -98,18 +90,6 @@
                             @endif
                             {{--End Admin Menus --}}
 
-                            {{-- Manager Menus --}}
-                            @if (Auth::user()->profile_type == 'App\Models\Manager')
-                            <li class="nav-item">
-                                <a class="nav-link {{Request::is('assistants')? 'active': ''}}"
-                                    href="{{route('assistants.index')}}">
-                                    <span data-feather="users"></span>
-                                    Assistants
-                                </a>
-                            </li>
-                            @endif
-                            {{--End Manager Menus --}}
-
                             {{-- Assistant Menus --}}
                             @if (Auth::user()->profile_type == 'App\Models\Assistant')
                             <li class="nav-item">
@@ -117,6 +97,13 @@
                                     href="{{route('customers.index')}}">
                                     <span data-feather="users"></span>
                                     Customers
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{Request::is('appointments')? 'active' : ''}}"
+                                    href="{{route('appointments.index')}}">
+                                    <span data-feather="layers"></span>
+                                    Appointments
                                 </a>
                             </li>
                             @endif
@@ -128,8 +115,6 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                     @yield('dashboard-content')
                 </main>
-
-
             </div>
         </div>
 
