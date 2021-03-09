@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\Models\User;
-use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 
-class CustomerSeeder extends Seeder
+class AdminModelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,21 +18,16 @@ class CustomerSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $user = User::create([
-                'email' => 'customer' . $i . '@mail.com',
+                'email' => 'admin' . $i . '@mail.com',
                 'password' => Hash::make('12345678'),
             ]);
 
-            // CREATE CUSTOMER DETAIL IN CUSTOMERS TABLE
-            $profile = Customer::create([
+            // CREATE ASSISTANT DETAIL IN ASSISTANT TABLE
+            $profile = Admin::create([
                 'name' => $faker->name(),
-                'phone' => '0182739812',
-                'address' => $faker->address(),
-                'city' => $faker->city(),
-                'priority' => 'HIGH',
             ]);
-
             $profile->user()->save(User::find($user->id));
         }
     }

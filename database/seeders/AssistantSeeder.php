@@ -5,10 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Models\User;
-use App\Models\Customer;
+use App\Models\Assistant;
 use Illuminate\Support\Facades\Hash;
 
-class CustomerSeeder extends Seeder
+class AssistantSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,19 +18,18 @@ class CustomerSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             $user = User::create([
-                'email' => 'customer' . $i . '@mail.com',
+                'email' => 'assistant' . $i . '@mail.com',
                 'password' => Hash::make('12345678'),
             ]);
 
-            // CREATE CUSTOMER DETAIL IN CUSTOMERS TABLE
-            $profile = Customer::create([
+            // CREATE ASSISTANT DETAIL IN ASSISTANT TABLE
+            $profile = Assistant::create([
                 'name' => $faker->name(),
-                'phone' => '0182739812',
+                'phone' => '0182739888',
                 'address' => $faker->address(),
                 'city' => $faker->city(),
-                'priority' => 'HIGH',
             ]);
 
             $profile->user()->save(User::find($user->id));
