@@ -10,6 +10,7 @@ class Assistant extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $with = ['manager'];
 
     public function user()
     {
@@ -25,8 +26,6 @@ class Assistant extends Model
     {
         return $this->belongsTo(Manager::class, 'manager_id', 'id');
     }
-
-
 
     protected $fillable = [
         'name',

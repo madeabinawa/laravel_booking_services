@@ -11,6 +11,8 @@ class Customer extends Model
 
     protected $guarded = [];
 
+    protected $with = ['assistant'];
+
     public function user()
     {
         return $this->morphOne(User::class, 'profile');
