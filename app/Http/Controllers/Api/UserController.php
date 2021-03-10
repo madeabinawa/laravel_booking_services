@@ -92,7 +92,10 @@ class UserController extends Controller
                 }
             }
 
-            return ApiResponse::success(['user' => $user], 'Successfully update user');
+            // GET UPDATED USER DETAILS
+            $newUser = Auth::setUser($user);
+
+            return ApiResponse::success(['user' => $newUser], 'Successfully update user');
         } catch (Exception $e) {
             return  ApiResponse::error($e, 'Something went wrong');
         }
@@ -101,5 +104,6 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
+        return ApiResponse::success([], 'Successfully revoke token');
     }
 }

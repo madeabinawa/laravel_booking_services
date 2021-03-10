@@ -84,7 +84,6 @@ class AppointmentController extends Controller
             'appointment_date' => 'required',
             'customer_id' => 'required',
             'assistant_id' => 'required',
-            'status' => 'required'
         ]);
 
         try {
