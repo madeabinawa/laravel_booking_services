@@ -93,7 +93,7 @@ class UserController extends Controller
             }
 
             // GET UPDATED USER DETAILS
-            $newUser = Auth::setUser($user);
+            $newUser = Auth::user();
 
             return ApiResponse::success(['user' => $newUser], 'Successfully update user');
         } catch (Exception $e) {
