@@ -94,7 +94,6 @@ class UserController extends Controller
 
             // GET UPDATED USER DETAILS
             $newUser = User::find($user->id);
-
             return ApiResponse::success(['user' => $newUser], 'Successfully update user');
         } catch (Exception $e) {
             return  ApiResponse::error($e, 'Something went wrong');
