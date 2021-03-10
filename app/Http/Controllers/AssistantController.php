@@ -19,7 +19,7 @@ class AssistantController extends Controller
      */
     public function index()
     {
-        $users = User::where('profile_type', 'LIKE', '%Assistant')->get();
+        $users = User::where('profile_type', 'LIKE', '%Assistant')->paginate(3);
         return view('assistants.index', compact('users'));
     }
 
