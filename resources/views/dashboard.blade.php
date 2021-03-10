@@ -3,6 +3,7 @@
 @section('dashboard-content')
 
 <div class="container pt-3">
+    <h4 class="h4 font-weight-light text-danger">Under Development</h4>
     <h1 class="display-4">Dashboard</h1>
     <div class="row row-cols-1 row-cols-md-3 pt-3">
         <div class="col mb-4">

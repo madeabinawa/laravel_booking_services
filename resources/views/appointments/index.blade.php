@@ -3,6 +3,7 @@
 
 @section('dashboard-content')
 <div class="d-block justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h4 class="h4 font-weight-light text-danger">Under Development</h4>
     <h1 class="h2">Appointments List</h1>
 
     <div class="btn-toolbar my-3">

@@ -5,9 +5,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Hugo 0.80.0">
-        <title>Cover Template · Bootstrap v4.6</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="https://laravel.com/img/favicon/favicon-32x32.png">
+        <title>{{config('app.name') .' | Unauthorized'}}</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="{{asset("css/app.css")}}">
@@ -51,16 +50,10 @@
                     @else
                     <a href="{{route('customers.index')}}" class="btn btn-lg btn-secondary">Back Home</a>
                     @endif
-
                     @endauth
-
-
                 </p>
             </main>
         </div>
-
-
-
     </body>
 
 </html>
