@@ -25,7 +25,6 @@
                 <th>No.</th>
                 <th>UID</th>
                 <th>Name</th>
-                <th>Email</th>
                 <th>Priority</th>
                 <th>Assistant</th>
                 <th>Action</th>
@@ -34,48 +33,21 @@
         </thead>
         <tbody>
             @foreach ($users as $item)
-            {{-- <tr>
-                <td>{{$users->firstItem() + $loop->index}}</td>
-            <td>{{$item->user->id}}</td>
-            <td>{{$item->user->name}}</td>
-            <td>{{$item->user->email}}</td>
-            <td>{{$item->priority}}</td>
-            <td>{{$item->assistant()->user->name}}</td>
-            <td>
-                <a href="{{route('customers.show', $item)}}" type="button"
-                    class="btn btn-sm btn-outline-info">Detail</a>
-                <a href="{{route('customers.edit', $item)}}" type="button"
-                    class="btn btn-sm btn-outline-success">Edit</a>
-
-                <form class="d-inline" action="{{ route('customers.destroy', $item->id) }}" method="POST">
-
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete
-                    </button>
-                </form>
-            </td>
-            </tr> --}}
-
             <tr>
-                <td>{{$users->firstItem() + $loop->index}}</td>
+                <td>{{$loop->index+1}}</td>
                 <td>{{$item->id}}</td>
-                <td>{{$item->profile->name}}</td>
-                <td>{{$item->email}}</td>
-                <td>{{$item->profile->priority}}</td>
-                <td>{{App\Models\Assistant::where('id',$item->profile->assistant_id)->value('name')}}</td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->priority}}</td>
+                <td>{{$item->assistant->name}}</td>
                 <td>
-                    <a href="{{route('customers.show', $item->profile)}}" type="button"
+                    <a href="{{route('customers.show', $item)}}" type="button"
                         class="btn btn-sm btn-outline-info">Detail</a>
-                    <a href="{{route('customers.edit', $item->profile)}}" type="button"
+                    <a href="{{route('customers.edit', $item)}}" type="button"
                         class="btn btn-sm btn-outline-success">Edit</a>
 
-                    <form class="d-inline" action="{{ route('customers.destroy', $item->profile->id) }}" method="POST">
-
+                    <form class="d-inline" action="{{ route('customers.destroy', $item) }}" method="POST">
                         @csrf
                         @method('DELETE')
-
                         <button type="submit" class="btn btn-sm btn-outline-danger">Delete
                         </button>
                     </form>
@@ -85,9 +57,6 @@
         </tbody>
     </table>
 </div>
-{{-- <div>
-    {{ $users->links() }}
-</div> --}}
 
 
 @endsection

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\AssistantRouteMiddleware;
+use App\Models\Assistant;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
@@ -16,8 +19,21 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $users = User::where('profile_type', 'LIKE', '%Customer')->paginate(10);
-        return view('customers.index', compact('users'));
+        $auth_user = Auth::user();
+        $auth_user_name = $auth_user->profile->name;
+
+        if ($auth_user->profile_type == 'App\Models\Admin') {
+            $users = Customer::paginate(10);
+        } else {
+            $get_users = Assistant::where('id', $auth_user->profile_id)->with('customer')->get();
+
+            foreach ($get_users as $item) {
+                // GET CUSTOMERS OF ASSISTANT
+                $users = $item->customer;
+            }
+        }
+        // dd($users);
+        return view('customers.index', compact(['users', 'auth_user_name']));
     }
 
     /**
