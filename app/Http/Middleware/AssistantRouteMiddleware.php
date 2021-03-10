@@ -18,7 +18,7 @@ class AssistantRouteMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()) {
-            if (Auth::user()->profile_type == 'App\Models\Admin' || Auth::user()->profile_type == 'App\Models\Manager') {
+            if (Auth::user()->profile_type == 'App\Models\Admin') {
                 return $next($request);
             }
         }

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AssistantController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +21,7 @@ Route::get('/', fn () => view('dashboard'))->middleware('auth');
 
 // USER ROLE MANAGEMENT
 Route::resource('admins', AdminController::class)->middleware('adminRoute');
-Route::resource('assistants', AssistantController::class)->middleware('assistantRoute');
+Route::resource('assistants', AssistantController::class)->middleware('adminRoute');
 Route::resource('customers', CustomerController::class)->middleware('customerRoute');
 Route::resource('appointments', AppointmentController::class);
 
