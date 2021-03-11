@@ -75,14 +75,15 @@ class UserController extends Controller
             // GET USER DETAIL WITH ID
             $user = User::find(Auth::id());
             $customer = Customer::find($user->profile->id);
+            $user_token = $user->tokens->
 
-            // UPDATE CUSTOMER FIELD
-            $customer->update([
-                'name' => $request['name'],
-                'phone' => $request['phone'],
-                'address' => $request['address'],
-                'city' => $request['city'],
-            ]);
+                // UPDATE CUSTOMER FIELD
+                $customer->update([
+                    'name' => $request['name'],
+                    'phone' => $request['phone'],
+                    'address' => $request['address'],
+                    'city' => $request['city'],
+                ]);
 
             // CHECK IF REQUEST INCLUDE PASSWORD
             // THEN UPDATE USER PASSWORD
@@ -93,8 +94,8 @@ class UserController extends Controller
             }
 
             // GET UPDATED USER DETAILS
-            $newUser = User::find($user->id);
-            return ApiResponse::success(['user' => $newUser], 'Successfully update user');
+            // $newUser = User::find($user->id);
+            return ApiResponse::success([], 'Successfully update user');
         } catch (Exception $e) {
             return  ApiResponse::error($e, 'Something went wrong');
         }
