@@ -2,9 +2,10 @@
 
 @section('dashboard-content')
 <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h4 class="h4 font-weight-light text-danger">Under Development</h4>
     <a href="{{route('assistants.index')}}" type="button" class="btn btn-warning btn-sm mr-4 text-light">
         <i class="fa fa-chevron-left fa-sm pr-2"></i>Back</a>
-    <h1 class="h3">Assistant / Detail </h1>
+    <h1 class="h3">Appointment / Detail </h1>
 </div>
 <div class="container">
     <div class="row">
