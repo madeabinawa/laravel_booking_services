@@ -45,33 +45,44 @@
                     @enderror
                 </form>
             </div>
-            <div class="row">
-                <div class="container">
-                    <small class=" d-inline mt-2 mb-3 text-sm">Admin:</small>
-                    <div class="d-inline">
-                        <small>admin@mail.com | </small>
-                        <small>12345678</small>
-                    </div>
-                </div>
-                <div class="container pt-2">
-                    <small class=" d-inline mt-2 mb-3 text-sm">Assistant:</small>
-                    <div class="d-inline">
-                        <small>assistant1@mail.com | </small>
-                        <small>12345678</small>
-                    </div>
-                </div>
+            <div class="row mb-3">
                 <div class="container pt-5">
                     <p class=" d-inline mt-2 mb-3 text-sm">
-                        <a class=" text-muted" href="https://github.com/madeabinawa/laravel_booking_services">Source
+                        <a class=" text-muted" href="https://github.com/madeabinawa/laravel_booking_services">Web Source
+                            Code</a> |
+                        <a class=" text-muted" href="https://github.com/madeabinawa/flutter_booking_services">Mobile
+                            Source
                             Code</a> |
                         <a class=" text-muted" href="https://github.com/madeabinawa?tab=repositories">Portfolio
                             Lainnya</a> </p>
                 </div>
             </div>
+            <div class="row justify-content-md-center">
+                <div class="container">
+                    <small class=" d-inline mt-2 mb-3 text-sm"><strong>Admin:</strong> </small>
+                    <div class="d-inline">
+                        <small>admin@mail.com | </small>
+                        <small>12345678</small>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <small class=" d-inline mt-2 mb-3 text-sm"><strong>Assistant:</strong> </small>
+                    <div class="d-inline">
+                        <small>assistant1@mail.com / assistant2@mail.com | </small>
+                        <small>12345678 </small>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <small class=" d-inline mt-2 mb-3 text-sm"><strong>Assistant:</strong> </small>
+                    <div class="d-inline">
+                        <small>customer1@mail.com / customer2@mail.com | </small>
+                        <small>12345678 </small>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-
     </body>
     <script src="{{asset("js/app.js")}}"></script>
 
