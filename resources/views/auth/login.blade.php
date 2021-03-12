@@ -69,7 +69,7 @@
                 <div class="container">
                     <small class=" d-inline mt-2 mb-3 text-sm"><strong>Assistant:</strong> </small>
                     <div class="d-inline">
-                        <small>assistant1@mail.com / assistant2@mail.com | </small>
+                        <small>assistant0@mail.com / assistant1@mail.com | </small>
                         <small>12345678 </small>
                     </div>
                 </div>
