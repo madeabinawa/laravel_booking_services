@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="container">
-                    <small class=" d-inline mt-2 mb-3 text-sm"><strong>Assistant:</strong> </small>
+                    <small class=" d-inline mt-2 mb-3 text-sm"><strong>Customer:</strong> </small>
                     <div class="d-inline">
                         <small>customer1@mail.com / customer2@mail.com | </small>
                         <small>12345678 </small>
