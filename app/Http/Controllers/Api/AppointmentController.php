@@ -23,7 +23,7 @@ class AppointmentController extends Controller
         // GET USER DETAIL WITH ID
         $user = User::find(Auth::id());
 
-        $appointments = Appointment::where('customer_id', $user->profile->id)->get();
+        $appointments = Appointment::where('customer_id', $user->profile->id)->orderByDesc('status')->orderBy('appointment_date')->get();
         return ApiResponse::success($appointments, 'successfully fetch data');
     }
 

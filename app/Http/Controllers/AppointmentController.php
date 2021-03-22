@@ -19,9 +19,9 @@ class AppointmentController extends Controller
         $user = Auth::user();
 
         if ($user->profile_type == 'App\Models\Admin') {
-            $appointments = Appointment::paginate(3);
+            $appointments = Appointment::orderBy('appointment_date')->paginate(3);
         } else {
-            $appointments = Appointment::where('assistant_id', $user->profile->id)->paginate(3);
+            $appointments = Appointment::where('assistant_id', $user->profile->id)->orderByDesc('status')->orderBy('appointment_date')->paginate(3);
         }
 
         return view('appointments.index', compact('appointments'));
