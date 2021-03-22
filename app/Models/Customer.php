@@ -23,6 +23,11 @@ class Customer extends Model
         return $this->belongsTo(Assistant::class, 'assistant_id');
     }
 
+    public function appointment()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
     protected $fillable = [
         'name',
         'phone',

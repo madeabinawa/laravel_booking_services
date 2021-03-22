@@ -21,6 +21,11 @@ class Assistant extends Model
         return $this->hasMany(Customer::class);
     }
 
+    public function appointment()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
     protected $fillable = [
         'name',
         'phone',

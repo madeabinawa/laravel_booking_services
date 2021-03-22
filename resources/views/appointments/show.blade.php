@@ -1,19 +1,19 @@
 @extends('layout.app')
 
 @section('dashboard-content')
+
 <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h4 class="h4 font-weight-light text-danger">Under Development</h4>
-    <a href="{{route('assistants.index')}}" type="button" class="btn btn-warning btn-sm mr-4 text-light">
+    <a href="{{route('appointments.index')}}" type="button" class="btn btn-warning btn-sm mr-4 text-light">
         <i class="fa fa-chevron-left fa-sm pr-2"></i>Back</a>
-    <h1 class="h3">Appointment / Detail </h1>
+    <h1 class="h3">Appointment / Detail</h1>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-3 mx-auto mt-5" style="max-width: 75%">
-                <div class="d-flex justify-content-between card-header h2">{{$AppointmentDetail->name}}
+                <div class="d-flex justify-content-between card-header h2">{{$AppointmentDetail->title}}
                     <div class="div">
-                        <a href="{{route('assistants.edit',$AppointmentDetail)}}" type="button"
+                        <a href="{{route('appointments.edit',$AppointmentDetail)}}" type="button"
                             class="btn btn-primary ml-3 mb-3">Edit
                             <i class="fa fa-pencil-square-o pl-2" aria-hidden="true"></i></a>
                     </div>
@@ -23,13 +23,15 @@
                         <div class="card-body">
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="fa fa-map-marker fa-lg pr-2"
-                                        aria-hidden="true"></i>
-                                    {{$AppointmentDetail->address}}, {{$AppointmentDetail->city}}</li>
-                                <li class="list-group-item"><i class="fa fa-mobile fa-lg pr-2" aria-hidden="true"></i>
-                                    {{$AppointmentDetail->phone}}</li>
-                                <li class="list-group-item"><i class="fa fa-user fa-lg pr-2" aria-hidden="true"></i>
-                                    {{$AppointmentDetail->manager->name ?? 'Doesn\'t have manager yet'}}</li>
+                                <li class="list-group-item">
+                                    <strong>Customer Name:</strong><br>
+                                    {{$AppointmentDetail->customer->name ?? 'Doesn\'t have manager yet'}}
+                                </li>
+                                <li class="list-group-item "><strong>Appointment Description:</strong><br>
+                                    {{$AppointmentDetail->description}}</li>
+                                <li class="list-group-item"><strong>Appointment Date:</strong><br>
+                                    {{$AppointmentDetail->appointment_date}}</li>
+
                             </ul>
                             {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
                         </div>

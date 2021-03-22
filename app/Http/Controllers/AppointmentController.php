@@ -21,7 +21,7 @@ class AppointmentController extends Controller
         if ($user->profile_type == 'App\Models\Admin') {
             $appointments = Appointment::paginate(3);
         } else {
-            $appointments = Appointment::where('assistant_id', $user->assistant_id)->paginate(3);
+            $appointments = Appointment::where('assistant_id', $user->profile->id)->paginate(3);
         }
 
         return view('appointments.index', compact('appointments'));
@@ -55,6 +55,7 @@ class AppointmentController extends Controller
         ]);
 
         Appointment::create($request->all());
+
         return redirect()->route('appointments.index');
     }
 

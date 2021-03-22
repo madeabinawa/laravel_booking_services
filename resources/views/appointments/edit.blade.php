@@ -70,55 +70,55 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        {{-- <div class="col-md-3">
             <div class="form-group">
                 <label for="assistant_id">Assistants</label>
                 <select name="assistant_id" id="assistant_id" class="form-control selectpicker" data-live-search="true">
 
                     @if (old('assistant_id'))
                     <option value="{{old('assistant_id')}}">
-                        {{App\Models\Assistant::where('id', old('assistant_id'))->value('name')}}</option>
-                    @else
-                    <option>Select Assistant</option>
-                    @endif
+        {{App\Models\Assistant::where('id', old('assistant_id'))->value('name')}}</option>
+        @else
+        <option>Select Assistant</option>
+        @endif
 
-                    {{-- GET ASSISTANTS LIST --}}
+        {{-- GET ASSISTANTS LIST
                     {{$assistants = App\Models\Assistant::all()}}
 
-                    @foreach ($assistants as $assistant)
-                    <option value="{{$assistant->id}}">{{$assistant->name}}
-                    </option>
-                    @endforeach
+        @foreach ($assistants as $assistant)
+        <option value="{{$assistant->id}}">{{$assistant->name}}
+        </option>
+        @endforeach
 
-                </select>
-            </div>
-        </div>
+        </select>
+    </div>
+    </div>
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="customer_id">Customers</label>
-                <select name="customer_id" id="customer_id" class="form-control selectpicker" data-live-search="true">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="customer_id">Customers</label>
+            <select name="customer_id" id="customer_id" class="form-control selectpicker" data-live-search="true">
 
-                    @if (old('customer_id'))
-                    <option value="{{old('customer_id')}}">
-                        {{App\Models\Customer::where('id', old('customer_id'))->value('name')}}</option>
-                    @else
-                    <option>Select Customer</option>
-                    @endif
+                @if (old('customer_id'))
+                <option value="{{old('customer_id')}}">
+                    {{App\Models\Customer::where('id', old('customer_id'))->value('name')}}</option>
+                @else
+                <option>Select Customer</option>
+                @endif
 
-                    {{-- GET ASSISTANTS LIST --}}
+                {{-- GET ASSISTANTS LIST
                     {{$customers = App\Models\Customer::all()}}
 
-                    @foreach ($customers as $customer)
-                    <option value="{{$customer->id}}">{{$customer->name}}
-                    </option>
-                    @endforeach
+                @foreach ($customers as $customer)
+                <option value="{{$customer->id}}">{{$customer->name}}
+                </option>
+                @endforeach
 
-                </select>
-            </div>
+            </select>
         </div>
+    </div> --}}
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 <div>
     @if ($errors->any())

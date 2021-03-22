@@ -10,6 +10,16 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function assistant()
+    {
+        return $this->belongsTo(Assistant::class, 'assistant_id');
+    }
+
     protected $fillable = [
         'title',
         'description',

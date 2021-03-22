@@ -42,8 +42,10 @@
                 <td>{{$appointments->firstItem() + $loop->index}}</td>
                 <td>{{$item->title}}</td>
                 <td>{{$item->description}}</td>
-                <td>{{$item->customer_id}}</td>
-                <td>{{$item->assistant_id}}</td>
+                {{-- <td>{{ App\Models\Customer::find($item->customer_id)->name}}</td> --}}
+                {{-- <td>{{ App\Models\Assistant::find($item->assistant_id)->name}}</td> --}}
+                <td>{{ $item->customer->name}}</td>
+                <td>{{ $item->assistant->name}}</td>
                 <td>{{$item->appointment_date}}</td>
                 <td>{{$item->status}}</td>
                 <td>
