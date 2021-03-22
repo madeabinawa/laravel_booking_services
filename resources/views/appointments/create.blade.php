@@ -68,34 +68,6 @@
         </div>
 
         @if (Auth::user()->profile_type == "App\Models\Admin")
-
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="assistant_id">Assistants</label>
-                <select name="assistant_id" id="assistant_id" class="form-control selectpicker" data-live-search="true">
-
-                    @if (old('assistant_id'))
-                    <option value="{{old('assistant_id')}}">
-                        {{App\Models\Assistant::where('id', old('assistant_id'))->value('name')}}</option>
-                    @else
-                    <option>Select Assistant</option>
-                    @endif
-
-                    {{-- GET ASSISTANTS LIST --}}
-                    {{$assistants = App\Models\Assistant::all()}}
-
-                    @foreach ($assistants as $assistant)
-                    <option value="{{$assistant->id}}">{{$assistant->name}}
-                    </option>
-                    @endforeach
-
-                </select>
-            </div>
-        </div>
-
-        @endif
-
-        @if (Auth::user()->profile_type == "App\Models\Admin")
         <div class="col-md-3">
             <div class="form-group">
                 <label for="assistant_id">Assistants</label>
