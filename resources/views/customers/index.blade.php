@@ -5,8 +5,10 @@
     <h1 class="h2">Customers List</h1>
 
     <div class="btn-toolbar my-3">
+        @if (Auth::user()->profile_type == "App\Models\Admin")
         <a href="{{route('customers.create')}}" type="button" class="btn btn-success btn-md mr-2"><i
                 class="fa fa-plus pr-2" aria-hidden="true"></i>New Customer</a>
+        @endif
         <div class="btn-group mr-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
