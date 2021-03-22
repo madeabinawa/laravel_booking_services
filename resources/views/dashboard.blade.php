@@ -7,7 +7,7 @@
     <h1 class="display-4"> {{ (Auth::user()->profile_type == "App\Models\Assistant") ? 'Assistant' : 'Admin'}}
         Dashboard </h1>
 
-    <h3 class="h3 font-weight-light mt-3">Hello,{{Auth::user()->profile->name}}</h3>
+    <h3 class="h3 font-weight-light mt-3">Hello, {{Auth::user()->profile->name}}</h3>
     <div class="row row-cols-1 row-cols-md-3 pt-3">
         <div class="col mb-4">
             <div class="card">
