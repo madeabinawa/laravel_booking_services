@@ -23,7 +23,7 @@ Route::get('/', fn () => view('dashboard'))->middleware('auth');
 Route::resource('admins', AdminController::class)->middleware('adminRoute');
 Route::resource('assistants', AssistantController::class)->middleware('adminRoute');
 Route::resource('customers', CustomerController::class)->middleware('customerRoute');
-Route::resource('appointments', AppointmentController::class);
+Route::resource('appointments', AppointmentController::class)->middleware('auth');
 
 // ERROR UNAUTHORIZE VIEW
 Route::get('/unauthorize', fn () => view('error.unauthorize'))->name('unauthorized');
