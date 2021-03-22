@@ -46,7 +46,8 @@
 
                 </div>
                 <div class="card-footer text-muted">
-
+                    <strong> Rate Score : </strong>
+                    {{$AppointmentDetail->rate ?? 'Unrated'}}
                 </div>
             </div>
         </div>
