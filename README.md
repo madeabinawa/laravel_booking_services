@@ -9,7 +9,7 @@
 
 ## About Project
 
-Demo of Booking Services Web & API services, build with Laravel. Customer, through the mobile application can make an appointment with an assistant. 
+Demo of Booking Services Web & API services, build with Laravel. Customer, through the [mobile application](https://github.com/madeabinawa/flutter_booking_services) can make an appointment with an assistant. 
 The mobile application will consume the API created in this project
 
 ## About Laravel
